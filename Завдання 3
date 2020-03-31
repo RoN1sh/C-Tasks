@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+int main(void) {
+    for (int index = 0; index < 6; index++) {
+        char character = 'F' - index;
+        for (int j = 0; j < index + 1; ++j) {
+            printf("%c", character);
+            character++;
+        }
+        printf("%c", '\n');
+    }
+}
