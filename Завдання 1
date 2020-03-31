@@ -1,0 +1,32 @@
+#include <stdio.h>
+#define ELEMENTS 50   
+
+
+int main()
+{
+    int arr[ELEMENTS];  
+    int size, index, counter = 0;
+
+    printf("Введіть розмір масиву: ");
+    scanf("%d", &size);
+
+
+    printf("Введіть елементи масиву: ");
+    for(index=0; index<size; index++)
+    {
+        scanf("%d", &arr[index]);
+    }
+
+    for(index=0; index<size; index++)
+    {
+        
+        if(arr[index] < 0)
+        {
+            counter++;
+        }
+    }
+
+    printf("Кількість від'ємних елементів в масиві: %d", counter);
+
+    return 0;
+}
