@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MINUTES_IN_HOUR 60
+
+int main()
+{
+    
+    while(1 == 1)
+    {
+        div_t n;
+        int minutes;
+        scanf("%i", &minutes);
+        
+        if(minutes > 0){
+            n = div(minutes, MINUTES_IN_HOUR);
+            printf("%i:%02i \n", n.quot, n.rem);
+        }else{
+            break;
+        }
+    }
+
+    return 0;
+}
