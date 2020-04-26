@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main ()
+{
+    int a;
+    int b;
+    
+    printf("A:");
+    scanf("%d", &a);
+    printf("B:");
+    scanf("%d", &b);
+    
+    int *pa = &a;
+    int *pb = &b;
+    
+    printf("\nBefore swap:\n");
+    printf("A: addres: %p, value: %d\n", pa, *pa);
+    printf("B: addres: %p, value: %d\n", pb, *pb);
+    
+    int *tmp = pa;
+    pa = pb;
+    pb = tmp;
+    
+    printf("\nAfter swap:\n");
+    printf("A: addres: %p, value: %d\n", pa, *pa);
+    printf("B: addres: %p, value: %d\n", pb, *pb);
+}
