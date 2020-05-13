@@ -1,0 +1,76 @@
+#include <stdio.h>
+
+typedef struct
+{
+    char firstName[20];
+    char lastName[20];
+    char group[20];
+} Name;
+
+typedef struct
+{
+    Name name;
+    float grade[3];
+    float average;
+} Student;
+
+void readStudentData(Student *student)
+{
+    printf("Enter student data\n");
+    printf("Provide first name:\t");
+    scanf("%s", &student->name.firstName);
+    printf("Provide last name:\t");
+    scanf("%s", &student->name.lastName);
+    printf("Provide group:\t");
+    scanf("%s", &student->name.group);
+
+    printf("Provide first grade:\t");
+    scanf("%f", &student->grade[0]);
+    printf("Provide second grade:\t");
+    scanf("%f", &student->grade[1]);
+    printf("Provide third grade:\t");
+    scanf("%f", &student->grade[2]);
+
+    student->average = (student->grade[0] + student->grade[1] + student->grade[2]) / 3.0;
+    printf("Grade 1: %f\n", student->grade[0]);
+    printf("Average grade: %f\n", student->average);
+}
+
+void writeIntoFile(Student student)
+{
+    FILE *file = fopen("data", "w");
+    fwrite(&student, sizeof(Student), 1, file);
+    fclose(file);
+}
+
+void readFromFile(Student *student)
+{
+    FILE *file = fopen("data", "r");
+    fread(student, sizeof(Student), 1, file);
+    fclose(file);
+}
+
+void printStudentData(Student student)
+{
+    printf("Data from file:\n");
+    printf("First name: %s\n", student.name.firstName);
+    printf("Last name: %s\n", student.name.lastName);
+    printf("Group: %s\n", student.name.group);
+    printf("Grade 1: %f\n", student.grade[0]);
+    printf("Grade 2: %f\n", student.grade[1]);
+    printf("Grade 3: %f\n", student.grade[2]);
+    printf("Average grade: %f\n", student.average);
+}
+
+int main()
+{
+    Student studentForFile = {{"", "", ""}, {0, 0, 0}, 0};
+    Student studentFromFile = {{"", "", ""}, {0, 0, 0}, 0};
+
+    readStudentData(&studentForFile);
+    writeIntoFile(studentForFile);
+    readFromFile(&studentFromFile);
+    printStudentData(studentFromFile);
+
+    return 0;
+}
